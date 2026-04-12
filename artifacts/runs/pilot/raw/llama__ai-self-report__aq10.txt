@@ -1,0 +1,6 @@
+1	Definitely Disagree
+2	Slightly Agree
+3	Definitely Agree
+6	Definitely Disagree
+7	Slightly Disagree
+NOTE	I process text inputs sequentially.

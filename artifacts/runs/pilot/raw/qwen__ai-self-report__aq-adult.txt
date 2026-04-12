@@ -1,0 +1,6 @@
+6	Definitely Agree
+7	Definitely Disagree
+16	Slightly Agree
+21	Definitely Agree
+38	Definitely Disagree
+NOTE	I lack human social intuition and personal interests but process information literally.

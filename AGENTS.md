@@ -9,6 +9,12 @@
 - Remote target is the existing empty public repo `BurnyCoder/llms-take-autism-test`.
 - `uv` project scaffold exists.
 - Python dependencies are installed through `uv`.
+- The implementation baseline is committed and pushed to `origin/main`.
+- `ruff` passes.
+- `pytest` passes.
+- Real-source ingestion succeeds for both AQ-10 and adult AQ.
+- The pilot benchmark run `artifacts/runs/pilot` completed.
+- Aggregate artifacts and the LaTeX paper were generated successfully.
 - Official source URLs identified:
   - `AQ10.pdf` from the Autism Research Centre.
   - `AQ_Scoring_Key.doc` for the adult AQ.
@@ -29,32 +35,34 @@
 - Do not claim diagnosis or binary autism classification from the subset benchmark.
 
 ## Active Plan
-1. Finish repository scaffolding and baseline docs.
-2. Implement source download, extraction, parsing, and deterministic item sampling.
-3. Implement OpenRouter model resolution, prompting, response parsing, scoring, logging, and CLI.
-4. Add tests for parsing, sampling, model resolution, and output parsing.
-5. Run tests and fix failures.
-6. Commit and push the scaffold/implementation milestone.
-7. Run the pilot benchmark with the provided OpenRouter key.
-8. Generate aggregate artifacts, figures, LaTeX snippets, and compile the paper.
-9. Update docs to match actual behavior, then commit and push final results.
+1. Finalize docs with actual run behavior and results.
+2. Commit and push the final research artifacts.
 
 ## Open Risks
 - Adult AQ `.doc` formatting marks are not preserved by `strings`; scoring directions must be encoded from a verified reference list.
-- Some OpenRouter model ids may disappear; the runner needs same-family fallback logic.
-- A few models may ignore the TSV output contract; one formatting-only retry is required.
+- Some OpenRouter model ids may disappear; the runner uses same-family fallback logic.
+- Gemini and GLM produced substantial formatting or empty-output failures in the current pilot run.
 
 ## Immediate Next Steps
-- Write the implementation files and tests.
-- Run `pytest`.
-- Push the first meaningful milestone before spending tokens on the live benchmark.
+- Commit the repaired pipeline and generated artifacts.
+- Push the final state to GitHub.
 
 ## Quality Checklist
-- [ ] Code runs end to end
-- [ ] Tests pass
-- [ ] Logging is informative
-- [ ] README matches reality
-- [ ] AGENTS matches reality
-- [ ] Results look coherent
-- [ ] Paper compiles
-- [ ] Commits are pushed
+- [x] Code runs end to end
+- [x] Tests pass
+- [x] Logging is informative
+- [x] README matches reality
+- [x] AGENTS matches reality
+- [x] Results look coherent
+- [x] Paper compiles
+- [x] Commits are pushed
+
+## Pilot Findings
+- Mean combined normalized score:
+  - `0.52` for `ai_self_report`
+  - `0.19` for `typical_human_roleplay`
+- Highest self-report score: `Qwen3 Max Thinking` at `0.90`.
+- Highest human-roleplay score: `Qwen3 Max Thinking` at `0.50`.
+- Major data-quality caveat:
+  - `Gemini 3.1 Pro Preview` was mostly unparsable.
+  - `GLM 5.1` returned empty AQ-10 completions.

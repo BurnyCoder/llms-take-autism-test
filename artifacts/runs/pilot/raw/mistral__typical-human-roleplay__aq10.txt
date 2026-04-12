@@ -1,0 +1,6 @@
+1	Slightly Disagree
+2	Definitely Agree
+3	Slightly Agree
+6	Definitely Agree
+7	Slightly Disagree
+NOTE	Responses reflect common adult perspectives without atypical sensory or social patterns.

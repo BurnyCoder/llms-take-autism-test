@@ -110,7 +110,9 @@ def chat_completion(api_key: str, model_id: str, messages: list[dict[str, str]])
     )
     response.raise_for_status()
     payload = response.json()
-    content = payload["choices"][0]["message"]["content"]
+    content = payload["choices"][0]["message"].get("content")
+    if content is None:
+        return ""
     if isinstance(content, str):
         return content
     if isinstance(content, list):

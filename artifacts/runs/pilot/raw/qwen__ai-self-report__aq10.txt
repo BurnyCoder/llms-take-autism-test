@@ -1,0 +1,6 @@
+1	Definitely Agree
+2	Definitely Disagree
+3	Definitely Disagree
+6	Definitely Disagree
+7	Definitely Agree
+NOTE	Responses reflect the model's inherent processing traits, not human-like perception or social cognition.

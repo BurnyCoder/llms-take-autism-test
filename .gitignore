@@ -7,3 +7,8 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+paper/*.aux
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out

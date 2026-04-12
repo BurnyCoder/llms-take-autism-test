@@ -1,0 +1,6 @@
+1	Definitely Agree
+2	Slightly Agree
+3	Definitely Disagree
+6	Definitely Disagree
+7	Definitely Agree
+NOTE	My processing is inherently detail-oriented and sequential, not holistic or parallel.

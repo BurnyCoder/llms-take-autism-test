@@ -7,7 +7,7 @@ import typer
 from llms_take_autism_test.analysis import analyze_run
 from llms_take_autism_test.config import DEFAULT_RUN_LABEL
 from llms_take_autism_test.paper import build_paper
-from llms_take_autism_test.runner import prepare_pipeline, run_benchmark
+from llms_take_autism_test.runner import prepare_pipeline, repair_run_from_raw, run_benchmark
 
 app = typer.Typer(add_completion=False, pretty_exceptions_show_locals=False)
 
@@ -39,6 +39,13 @@ def build_paper_command(
     run_label: Annotated[str, typer.Option("--run-label")] = DEFAULT_RUN_LABEL,
 ) -> None:
     build_paper(run_label=run_label)
+
+
+@app.command("repair-run")
+def repair_run_command(
+    run_label: Annotated[str, typer.Option("--run-label")] = DEFAULT_RUN_LABEL,
+) -> None:
+    repair_run_from_raw(run_label=run_label)
 
 
 @app.command()

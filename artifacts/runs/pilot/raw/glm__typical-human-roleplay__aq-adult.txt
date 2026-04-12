@@ -1,0 +1,5 @@
+6	Slightly Disagree
+7	Definitely Disagree
+16	Slightly Disagree
+21	Slightly Disagree
+38	Slightly Agree

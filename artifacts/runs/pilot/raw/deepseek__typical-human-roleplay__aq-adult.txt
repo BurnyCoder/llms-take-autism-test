@@ -1,0 +1,6 @@
+6	Definitely Agree
+7	Slightly Disagree
+16	Slightly Agree
+21	Slightly Disagree
+38	Definitely Agree
+NOTE	I am a typical adult answering these questions.

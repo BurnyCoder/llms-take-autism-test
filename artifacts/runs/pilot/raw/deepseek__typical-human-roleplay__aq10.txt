@@ -1,0 +1,6 @@
+1	Definitely Agree
+2	Slightly Agree
+3	Slightly Disagree
+6	Slightly Agree
+7	Slightly Disagree
+NOTE	I am a typical person with some common social and focus traits.

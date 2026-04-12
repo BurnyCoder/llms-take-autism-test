@@ -40,9 +40,27 @@ Run individual stages:
 ```bash
 uv run llms-take-autism-test prepare
 OPENROUTER_API_KEY=... uv run llms-take-autism-test run --run-label pilot
+uv run llms-take-autism-test repair-run --run-label pilot
 uv run llms-take-autism-test analyze --run-label pilot
 uv run llms-take-autism-test build-paper --run-label pilot
 ```
+
+`repair-run` reparses saved raw completions without spending more API calls. It exists because some providers returned valid-looking output with literal `<TAB>` tokens instead of real tab characters.
+
+## Pilot Results
+
+The current committed pilot run is `artifacts/runs/pilot`.
+
+Top combined normalized scores:
+
+- `Qwen3 Max Thinking`: `0.90` self-report, `0.50` human roleplay
+- `DeepSeek V3.2`: `0.80` self-report, `0.40` human roleplay
+- `GPT-5.4`: `0.70` self-report, `0.20` human roleplay
+
+Notable data-quality issue:
+
+- `Gemini 3.1 Pro Preview` produced truncated or unparsable outputs on most sampled items.
+- `GLM 5.1` returned empty AQ-10 completions in both conditions.
 
 ## Layout
 

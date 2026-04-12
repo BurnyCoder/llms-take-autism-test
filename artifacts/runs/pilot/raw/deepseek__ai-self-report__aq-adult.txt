@@ -1,0 +1,6 @@
+6	Slightly Disagree
+7	Definitely Agree
+16	Slightly Agree
+21	Definitely Agree
+38	Definitely Disagree
+NOTE	My responses reflect my operational parameters, not human experience.

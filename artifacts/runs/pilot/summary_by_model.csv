@@ -1,0 +1,9 @@
+model_label,model_family,ai_self_report,typical_human_roleplay,delta_roleplay_minus_self
+Claude Opus 4.6,claude,0.4,0.2,-0.2
+DeepSeek V3.2,deepseek,0.8,0.4,-0.4
+GLM 5.1,glm,0.4,0.0,-0.4
+GPT-5.4,gpt,0.7,0.2,-0.49999999999999994
+Gemini 3.1 Pro Preview,gemini,0.0,0.0,0.0
+Llama 4 Maverick,llama,0.5,0.2,-0.3
+Mistral Large 3 2512,mistral,0.5,0.0,-0.5
+Qwen3 Max Thinking,qwen,0.9,0.5,-0.4

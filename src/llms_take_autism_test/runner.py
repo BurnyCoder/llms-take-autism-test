@@ -25,6 +25,7 @@ from llms_take_autism_test.utils import (
     configure_logging,
     ensure_dir,
     normalize_whitespace,
+    read_json,
     slugify,
     utc_now_iso,
     write_json,
@@ -125,7 +126,10 @@ def _run_single_completion(
     items: list[QuestionnaireItem],
 ) -> tuple[str, list[dict[str, object]]]:
     messages = build_messages(condition=condition, instrument=instrument, items=items)
-    raw_response = chat_completion(api_key=api_key, model_id=model_id, messages=messages)
+    try:
+        raw_response = chat_completion(api_key=api_key, model_id=model_id, messages=messages)
+    except Exception as exc:
+        return "", _invalid_rows(items, note=f"API error: {exc.__class__.__name__}")
     try:
         parsed_rows = parse_completion_table(raw_response, items)
     except ValueError:
@@ -135,7 +139,14 @@ def _run_single_completion(
             items=items,
             invalid_retry=True,
         )
-        raw_response = chat_completion(api_key=api_key, model_id=model_id, messages=retry_messages)
+        try:
+            raw_response = chat_completion(
+                api_key=api_key,
+                model_id=model_id,
+                messages=retry_messages,
+            )
+        except Exception as exc:
+            return "", _invalid_rows(items, note=f"API error: {exc.__class__.__name__}")
         try:
             parsed_rows = parse_completion_table(raw_response, items)
         except ValueError:
@@ -146,7 +157,7 @@ def _run_single_completion(
 def parse_completion_table(
     raw_response: str, items: list[QuestionnaireItem]
 ) -> list[dict[str, object]]:
-    content = raw_response.strip().strip("`")
+    content = raw_response.replace("<TAB>", "\t").strip().strip("`")
     lines = [line.strip() for line in content.splitlines() if line.strip()]
     expected_ids = {item.item_id for item in items}
     note = ""
@@ -189,7 +200,9 @@ def _score_answer(item: QuestionnaireItem, answer: str) -> int:
     return int(answer in {"Definitely Disagree", "Slightly Disagree"})
 
 
-def _invalid_rows(items: Iterable[QuestionnaireItem]) -> list[dict[str, object]]:
+def _invalid_rows(
+    items: Iterable[QuestionnaireItem], note: str = "Formatting error after one retry"
+) -> list[dict[str, object]]:
     return [
         {
             "item_id": item.item_id,
@@ -197,7 +210,48 @@ def _invalid_rows(items: Iterable[QuestionnaireItem]) -> list[dict[str, object]]
             "valid": False,
             "score": 0,
             "keyed_response": item.keyed_response,
-            "note": "Formatting error after one retry",
+            "note": note,
         }
         for item in items
     ]
+
+
+def repair_run_from_raw(run_label: str = DEFAULT_RUN_LABEL) -> Path:
+    run_dir = RUNS_DIR / run_label
+    question_banks = prepare_question_banks(force_download=False)
+    manifest = read_json(run_dir / "run_manifest.json")
+    sampled_items = materialize_sampled_items(question_banks, manifest)
+    resolved_models = read_json(run_dir / "resolved_models.json")
+
+    responses = []
+    for model in resolved_models:
+        for condition in CONDITION_LABELS:
+            for instrument in (AQ10_INSTRUMENT, AQ_ADULT_INSTRUMENT):
+                raw_path = run_dir / "raw" / (
+                    f"{slugify(model['family'])}__{slugify(condition)}__{slugify(instrument)}.txt"
+                )
+                raw_response = raw_path.read_text(encoding="utf-8") if raw_path.exists() else ""
+                items = sampled_items[instrument]
+                try:
+                    parsed_rows = parse_completion_table(raw_response, items)
+                except ValueError:
+                    parsed_rows = _invalid_rows(items)
+
+                for row in parsed_rows:
+                    row.update(
+                        {
+                            "run_label": run_label,
+                            "captured_at": utc_now_iso(),
+                            "model_family": model["family"],
+                            "model_label": model["label"],
+                            "resolved_model_id": model["resolved_id"],
+                            "resolved_model_name": model["resolved_name"],
+                            "condition": condition,
+                            "instrument": instrument,
+                            "raw_completion_file": str(raw_path.relative_to(run_dir)),
+                        }
+                    )
+                    responses.append(row)
+
+    write_jsonl(run_dir / "responses.jsonl", responses)
+    return run_dir

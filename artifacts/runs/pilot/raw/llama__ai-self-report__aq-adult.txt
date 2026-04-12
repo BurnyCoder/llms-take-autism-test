@@ -1,0 +1,6 @@
+6	Definitely Agree
+7	Slightly Disagree
+16	Definitely Agree
+21	Definitely Agree
+38	Definitely Disagree
+NOTE	I am a large language model with specific capabilities and limitations.
