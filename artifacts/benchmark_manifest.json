@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-04-12T17:30:16+00:00",
+  "seed": 20260412,
+  "sample_size": 5,
+  "conditions": [
+    "ai_self_report",
+    "typical_human_roleplay"
+  ],
+  "sampled_item_ids": {
+    "aq10": [
+      1,
+      2,
+      3,
+      6,
+      7
+    ],
+    "aq_adult": [
+      6,
+      7,
+      16,
+      21,
+      38
+    ]
+  }
+}

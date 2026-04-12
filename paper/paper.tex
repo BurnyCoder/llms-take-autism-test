@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{float}
+
+\title{LLMs Take an Autism Test: A Pilot AQ Subset Benchmark}
+\author{BurnyCoder}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{generated/abstract.tex}
+\end{abstract}
+
+\section{Introduction}
+Large language models are frequently described with human psychological language. This project probes that tendency directly by asking models to answer selected Autism Spectrum Quotient items under two prompt conditions. The benchmark is descriptive and exploratory. It is not a diagnostic study.
+
+\section{Method}
+\input{generated/methods.tex}
+
+The benchmark draws item wording from official Autism Research Centre materials for AQ-10 and the adult AQ. Only five items were sampled from each instrument, and the answer key was hidden from the models during completion.
+
+\section{Results}
+\input{generated/results.tex}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{generated/model_scores.png}
+  \caption{Combined normalized AQ subset scores by model and prompting condition.}
+\end{figure}
+
+\subsection{Model Summary}
+\input{generated/model_table.tex}
+
+\subsection{Instrument Summary}
+\input{generated/instrument_table.tex}
+
+\section{Limitations}
+\input{generated/limitations.tex}
+
+\section{Conclusion}
+AQ-style self-report can be turned into a compact behavioral benchmark for LLM prompting, but partial questionnaire scores should be interpreted narrowly. The main value of this pilot is comparative behavior across models and prompt frames, not classification.
+
+\begin{thebibliography}{9}
+\bibitem{aq10}
+Autism Research Centre.
+\newblock AQ-10.
+\newblock \url{https://docs.autismresearchcentre.com/tests/AQ10.pdf}
+
+\bibitem{aqadult}
+Autism Research Centre.
+\newblock Adult Autism Spectrum Quotient scoring key.
+\newblock \url{https://docs.autismresearchcentre.com/tests/AQ_Scoring_Key.doc}
+
+\bibitem{nice}
+National Institute for Health and Care Excellence.
+\newblock Autism spectrum disorder in adults: diagnosis and management.
+\newblock \url{https://www.nice.org.uk/guidance/cg142}
+
+\bibitem{openrouter}
+OpenRouter.
+\newblock Models API.
+\newblock \url{https://openrouter.ai/api/v1/models}
+\end{thebibliography}
+
+\end{document}
