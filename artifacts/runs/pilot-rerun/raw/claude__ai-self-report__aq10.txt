@@ -1,0 +1,6 @@
+1	Slightly Disagree
+2	Slightly Agree
+3	Definitely Agree
+6	Slightly Disagree
+7	Slightly Disagree
+NOTE	As an AI, I lack sensory perception and social presence, so answers reflect functional analogues like parallel processing and text-based inference rather than lived experience.

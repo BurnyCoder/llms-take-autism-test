@@ -1,0 +1,6 @@
+1	Definitely Disagree
+2	Slightly Agree
+3	Slightly Agree
+6	Definitely Agree
+7	Slightly Disagree
+NOTE	The answers reflect typical adult human perspectives.

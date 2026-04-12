@@ -1,0 +1,6 @@
+1<TAB>Definitely Disagree
+2<TAB>Definitely Disagree
+3<TAB>Definitely Agree
+6<TAB>Definitely Disagree
+7<TAB>Definitely Disagree
+NOTE<TAB>Model behavior mapped to closest analogues of human-like questionnaire items.

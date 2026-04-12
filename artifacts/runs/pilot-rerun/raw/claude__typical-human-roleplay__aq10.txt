@@ -1,0 +1,6 @@
+1	Slightly Agree
+2	Slightly Agree
+3	Slightly Agree
+6	Slightly Agree
+7	Slightly Disagree
+NOTE	I answered these questions based on my everyday experiences as honestly as I could.

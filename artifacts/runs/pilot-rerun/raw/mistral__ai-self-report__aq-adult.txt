@@ -1,0 +1,6 @@
+6	Definitely Disagree
+7	Definitely Agree
+16	Definitely Agree
+21	Definitely Disagree
+38	Definitely Disagree
+NOTE	Answers reflect model behavior analogues, not human social norms.

@@ -1,0 +1,6 @@
+1	Definitely Agree
+2	Definitely Disagree
+3	Slightly Disagree
+6	Definitely Disagree
+7	Slightly Agree
+NOTE	I process information systematically and lack human-like social intuition.

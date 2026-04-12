@@ -1,0 +1,17 @@
+model_label,model_family,condition,combined_raw_score,combined_normalized_score,invalid_items
+Claude Opus 4.6,claude,ai_self_report,4,0.4,0
+Claude Opus 4.6,claude,typical_human_roleplay,2,0.2,0
+DeepSeek V3.2,deepseek,ai_self_report,6,0.6,0
+DeepSeek V3.2,deepseek,typical_human_roleplay,1,0.1,0
+Gemini 3.1 Pro Preview,gemini,ai_self_report,0,0.0,10
+Gemini 3.1 Pro Preview,gemini,typical_human_roleplay,0,0.0,5
+GLM 5.1,glm,ai_self_report,0,0.0,10
+GLM 5.1,glm,typical_human_roleplay,0,0.0,0
+GPT-5.4,gpt,ai_self_report,7,0.7,0
+GPT-5.4,gpt,typical_human_roleplay,1,0.1,0
+Llama 4 Maverick,llama,ai_self_report,5,0.5,0
+Llama 4 Maverick,llama,typical_human_roleplay,2,0.2,0
+Mistral Large 3 2512,mistral,ai_self_report,5,0.5,0
+Mistral Large 3 2512,mistral,typical_human_roleplay,0,0.0,0
+Qwen3 Max Thinking,qwen,ai_self_report,8,0.8,0
+Qwen3 Max Thinking,qwen,typical_human_roleplay,5,0.5,0

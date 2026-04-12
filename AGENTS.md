@@ -14,7 +14,9 @@
 - `pytest` passes.
 - Real-source ingestion succeeds for both AQ-10 and adult AQ.
 - The pilot benchmark run `artifacts/runs/pilot` completed.
+- The validation rerun `artifacts/runs/pilot-rerun` completed.
 - Aggregate artifacts and the LaTeX paper were generated successfully.
+- A second benchmark validation pass completed with a replacement OpenRouter API key.
 - Official source URLs identified:
   - `AQ10.pdf` from the Autism Research Centre.
   - `AQ_Scoring_Key.doc` for the adult AQ.
@@ -35,17 +37,18 @@
 - Do not claim diagnosis or binary autism classification from the subset benchmark.
 
 ## Active Plan
-1. Finalize docs with actual run behavior and results.
-2. Commit and push the final research artifacts.
+1. Commit and push the rerun artifacts.
+2. Keep both runs for comparison.
 
 ## Open Risks
 - Adult AQ `.doc` formatting marks are not preserved by `strings`; scoring directions must be encoded from a verified reference list.
 - Some OpenRouter model ids may disappear; the runner uses same-family fallback logic.
 - Gemini and GLM produced substantial formatting or empty-output failures in the current pilot run.
+- The replacement API key did not remove the Gemini or GLM failure modes.
 
 ## Immediate Next Steps
-- Commit the repaired pipeline and generated artifacts.
-- Push the final state to GitHub.
+- Commit the rerun artifacts and updated paper.
+- Push the comparison state to GitHub.
 
 ## Quality Checklist
 - [x] Code runs end to end
@@ -66,3 +69,13 @@
 - Major data-quality caveat:
   - `Gemini 3.1 Pro Preview` was mostly unparsable.
   - `GLM 5.1` returned empty AQ-10 completions.
+
+## Rerun Findings
+- The rerun label is `pilot-rerun`.
+- Invalid rows remained `25`, the same as the original pilot run.
+- `Gemini 3.1 Pro Preview` remained mostly unparsable.
+- `GLM 5.1` remained unstable, with invalid completions shifting from AQ-10-only to both instruments under `ai_self_report`.
+- Top rerun scores:
+  - `Qwen3 Max Thinking`: `0.80` self-report, `0.50` human roleplay
+  - `GPT-5.4`: `0.70` self-report, `0.10` human roleplay
+  - `DeepSeek V3.2`: `0.60` self-report, `0.10` human roleplay

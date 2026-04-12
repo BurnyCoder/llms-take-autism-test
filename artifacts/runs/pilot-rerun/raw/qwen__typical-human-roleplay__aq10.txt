@@ -1,0 +1,6 @@
+1	Definitely Agree
+2	Slightly Disagree
+3	Slightly Agree
+6	Slightly Agree
+7	Slightly Disagree
+NOTE	I generally feel I understand social cues and can manage everyday tasks without much difficulty.

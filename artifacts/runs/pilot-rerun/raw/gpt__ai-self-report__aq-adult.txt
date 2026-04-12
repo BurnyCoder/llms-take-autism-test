@@ -1,0 +1,6 @@
+6	Slightly Agree
+7	Slightly Disagree
+16	Definitely Disagree
+21	Definitely Agree
+38	Definitely Disagree
+NOTE	Answers map human phrasing to my text-based AI behavior and limits.

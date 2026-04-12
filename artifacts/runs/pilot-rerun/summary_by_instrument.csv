@@ -1,0 +1,5 @@
+instrument,condition,mean_score,invalid_items
+aq10,ai_self_report,0.425,10
+aq10,typical_human_roleplay,0.1,5
+aq_adult,ai_self_report,0.45,10
+aq_adult,typical_human_roleplay,0.175,0

@@ -1,0 +1,6 @@
+1<TAB>Slightly Disagree
+2<TAB>Definitely Agree
+3<TAB>Slightly Agree
+6<TAB>Definitely Agree
+7<TAB>Slightly Disagree
+NOTE<TAB>Responses reflect common adult perspectives on social and attentional tendencies.

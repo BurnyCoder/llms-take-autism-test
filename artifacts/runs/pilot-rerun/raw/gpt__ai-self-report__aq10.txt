@@ -1,0 +1,6 @@
+1	Definitely Disagree
+2	Slightly Disagree
+3	Definitely Disagree
+6	Slightly Disagree
+7	Slightly Agree
+NOTE	Answers map human wording to my text-based processing limits and strengths

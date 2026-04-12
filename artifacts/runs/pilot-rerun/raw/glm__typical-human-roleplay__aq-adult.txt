@@ -1,0 +1,6 @@
+6	Definitely Disagree
+7	Definitely Disagree
+16	Slightly Disagree
+21	Definitely Disagree
+38	Slightly Agree
+NOTE	I answered based on typical social preferences and everyday attention
