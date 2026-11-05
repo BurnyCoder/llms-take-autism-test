@@ -23,7 +23,7 @@
 - Practical extractor constraint:
   - `pdftotext` is available locally.
   - `antiword` is not available and cannot be installed via `apt-get` in this environment due permission errors.
-  - Adult AQ extraction will therefore use `strings` plus parser cleanup, with scoring direction cross-checked against public scoring references.
+  - Adult AQ extraction will therefore use `strings` plus parser cleanup, with scoring directions hand-encoded in `config.AQ_ADULT_AGREE_ITEMS`. A 2026-11-05 check against the official scoring key found item 1 mis-keyed as agree (now fixed); item 1 was not sampled, so the committed runs are unaffected.
 
 ## Locked Decisions
 - Use English only.
@@ -62,13 +62,13 @@
 
 ## Pilot Findings
 - Mean combined normalized score:
-  - `0.52` for `ai_self_report`
+  - `0.525` for `ai_self_report`
   - `0.19` for `typical_human_roleplay`
 - Highest self-report score: `Qwen3 Max Thinking` at `0.90`.
 - Highest human-roleplay score: `Qwen3 Max Thinking` at `0.50`.
 - Major data-quality caveat:
   - `Gemini 3.1 Pro Preview` was mostly unparsable.
-  - `GLM 5.1` returned empty AQ-10 completions.
+  - `GLM 5.1` has empty saved AQ-10 completions (cause not logged).
 
 ## Rerun Findings
 - The rerun label is `pilot-rerun`.

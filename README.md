@@ -17,6 +17,8 @@ The outputs are exploratory subset scores. They are not diagnostic labels and sh
 - Adult AQ scoring key: <https://docs.autismresearchcentre.com/tests/AQ_Scoring_Key.doc>
 - Adult AQ page: <https://www.autismresearchcentre.com/tests/autism-spectrum-quotient-aq-adult/>
 - NICE guideline: <https://www.nice.org.uk/guidance/cg142>
+- Adult AQ paper: Baron-Cohen et al. (2001), J Autism Dev Disord 31(1):5-17, <https://doi.org/10.1023/A:1005653411471>
+- AQ-10 paper: Allison, Auyeung and Baron-Cohen (2012), J Am Acad Child Adolesc Psychiatry 51(2):202-212, <https://doi.org/10.1016/j.jaac.2011.11.003>
 - OpenRouter model catalog: <https://openrouter.ai/api/v1/models>
 
 ## Requirements
@@ -24,6 +26,7 @@ The outputs are exploratory subset scores. They are not diagnostic labels and sh
 - Python 3.12+
 - `uv`
 - `pdftotext`
+- `strings` (GNU binutils)
 - `latexmk` / `pdflatex`
 - `OPENROUTER_API_KEY` in the environment
 
@@ -49,7 +52,9 @@ uv run llms-take-autism-test build-paper --run-label pilot
 
 ## Pilot Results
 
-The current committed pilot run is `artifacts/runs/pilot`.
+The current committed pilot run is `artifacts/runs/pilot` (summaries in `summary_by_model_condition.csv`). The paper is built from the second run, `artifacts/runs/pilot-rerun`, whose scores differ for DeepSeek, GLM, GPT and Qwen.
+
+Scores are the share of the 10 sampled items answered in the scored direction. Invalid or unparsable items count as 0, so models with invalid items score lower for formatting reasons as well as for their answers. Each score is from a single temperature-0 run.
 
 Top combined normalized scores:
 
@@ -59,8 +64,8 @@ Top combined normalized scores:
 
 Notable data-quality issue:
 
-- `Gemini 3.1 Pro Preview` produced truncated or unparsable outputs on most sampled items.
-- `GLM 5.1` returned empty AQ-10 completions in both conditions.
+- `Gemini 3.1 Pro Preview` produced truncated or unparsable outputs on most sampled items (15 of 20 item responses invalid).
+- `GLM 5.1`'s saved AQ-10 completions are empty in both conditions (10 of 20 item responses invalid). The runner also saves an empty completion after an API error, and the cause was not logged.
 
 ## Layout
 

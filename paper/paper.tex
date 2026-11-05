@@ -23,7 +23,7 @@ Large language models are frequently described with human psychological language
 \section{Method}
 \input{generated/methods.tex}
 
-The benchmark draws item wording from official Autism Research Centre materials for AQ-10 and the adult AQ. Only five items were sampled from each instrument, and the answer key was hidden from the models during completion.
+The benchmark draws item wording from official Autism Research Centre materials for AQ-10 \cite{aq10} and the adult AQ \cite{aqadult}. The adult AQ is the 50-item questionnaire of Baron-Cohen et al.\ \cite{baroncohen2001}; the AQ-10 is a 10-item short form \cite{allison2012} that NICE guideline CG142 suggests considering for adults with possible autism who do not have a moderate or severe learning disability \cite{nice}. Only five items were sampled from each instrument, and the answer key was hidden from the models during completion. Each model received one request per condition and instrument (plus one retry after a formatting error) at temperature 0 with a 500-token output limit, through the OpenRouter API \cite{openrouter}.
 
 \section{Results}
 \input{generated/results.tex}
@@ -31,7 +31,7 @@ The benchmark draws item wording from official Autism Research Centre materials 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{generated/model_scores.png}
-  \caption{Combined normalized AQ subset scores by model and prompting condition.}
+  \caption{Combined normalized AQ subset scores by model and prompting condition (run pilot-rerun). Invalid items are scored 0, so the zero bars for Gemini 3.1 Pro Preview and GLM 5.1 largely reflect formatting failures.}
 \end{figure}
 
 \subsection{Model Summary}
@@ -62,6 +62,18 @@ Autism Research Centre.
 Autism Research Centre.
 \newblock Adult Autism Spectrum Quotient scoring key.
 \newblock \url{https://docs.autismresearchcentre.com/tests/AQ_Scoring_Key.doc}
+
+\bibitem{baroncohen2001}
+S.~Baron-Cohen, S.~Wheelwright, R.~Skinner, J.~Martin, and E.~Clubley.
+\newblock The Autism-Spectrum Quotient (AQ): Evidence from Asperger syndrome/high-functioning autism, males and females, scientists and mathematicians.
+\newblock \emph{Journal of Autism and Developmental Disorders}, 31(1):5--17, 2001.
+\newblock \url{https://doi.org/10.1023/A:1005653411471}
+
+\bibitem{allison2012}
+C.~Allison, B.~Auyeung, and S.~Baron-Cohen.
+\newblock Toward brief ``red flags'' for autism screening: The Short Autism Spectrum Quotient and the Short Quantitative Checklist in 1,000 cases and 3,000 controls.
+\newblock \emph{Journal of the American Academy of Child and Adolescent Psychiatry}, 51(2):202--212, 2012.
+\newblock \url{https://doi.org/10.1016/j.jaac.2011.11.003}
 
 \bibitem{nice}
 National Institute for Health and Care Excellence.
