@@ -66,8 +66,10 @@ CONDITION_LABELS = {
     ),
 }
 
+# Items where "Definitely/Slightly Agree" scores 1 point, per the official ARC scoring key
+# (AQ_ADULT_SCORING_URL above; Baron-Cohen et al. 2001, J Autism Dev Disord 31:5-17). All other
+# items score 1 point for "Definitely/Slightly Disagree". Item 1 is disagree-keyed.
 AQ_ADULT_AGREE_ITEMS = {
-    1,
     2,
     4,
     5,

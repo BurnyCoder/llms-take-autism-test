@@ -64,6 +64,7 @@ def test_parse_adult_aq_text_extracts_ordered_items() -> None:
 
     assert len(items) == 6
     assert items[0].item_id == 1
-    assert items[0].keyed_response == "agree"
+    assert items[0].keyed_response == "disagree"
+    assert items[1].keyed_response == "agree"
     assert items[2].keyed_response == "disagree"
     assert items[5].text == "I usually notice car number plates or similar strings of information."
