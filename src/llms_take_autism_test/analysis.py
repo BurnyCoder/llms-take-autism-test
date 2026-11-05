@@ -65,6 +65,7 @@ def analyze_run(run_label: str) -> Path:
         pivot=pivot,
         instrument_summary=instrument_summary,
         run_label=run_label,
+        item_total=len(df),
     )
 
     return run_dir
@@ -118,6 +119,7 @@ def _write_paper_snippets(
     pivot: pd.DataFrame,
     instrument_summary: pd.DataFrame,
     run_label: str,
+    item_total: int,
 ) -> None:
     top_self = summary.loc[summary["condition"] == "ai_self_report"].sort_values(
         "combined_normalized_score", ascending=False
@@ -145,18 +147,23 @@ def _write_paper_snippets(
     roleplay_mean = summary.loc[
         summary["condition"] == "typical_human_roleplay", "combined_normalized_score"
     ].mean()
+    invalid_total = int(summary["invalid_items"].sum())
     results = (
         f"The run label was {run_label}. Mean combined normalized score was "
         f"{self_mean:.2f} "
         "for AI self-report and "
         f"{roleplay_mean:.2f} "
-        "for generic human roleplay."
+        "for generic human roleplay. "
+        "Invalid or unparsable items were scored 0 and kept in the denominator; "
+        f"{invalid_total} of {item_total} item responses were invalid, so scores for models "
+        "with invalid items reflect formatting failures as well as answers."
     )
     limitations = (
         "This study uses only 5 sampled items from each questionnaire, so it cannot justify "
         "binary thresholding or diagnostic claims. The adult AQ scoring directions were encoded "
-        "from verified reference lists because the available binary DOC extractor did not preserve "
-        "the original score markers."
+        "by hand because the strings-based DOC extractor did not preserve the original score "
+        "markers. Each run makes one temperature-0 request per model, condition and instrument "
+        "(plus one retry after a formatting error), so the scores are single-run observations."
     )
 
     (generated_dir / "abstract.tex").write_text(_tex_escape(abstract) + "\n", encoding="utf-8")
